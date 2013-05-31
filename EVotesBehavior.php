@@ -1,8 +1,9 @@
 <?php
-class EVotesBehavior extends CActiveRecordBehavior
+class ModelVotesBehaviorPublic extends CActiveRecordBehavior
 {
 	public $selfVoteError;
 	public $itemDeleteError;
+	public $notRegisteredError = 'Для голосования нужно войти!';
 	
 	public $itemModelName;
 	public $itemFieldName;
@@ -46,6 +47,12 @@ class EVotesBehavior extends CActiveRecordBehavior
 	
 	public function addVote($vote, $item_id = null)
 	{
+		$user = Yii::app()->user;
+		if ($user->isGuest) {
+			$this->owner->addError($this->itemFieldName, $this->notRegisteredError);
+			return false;
+		}
+		
 		if ($item_id) {
 			$this->item_id = $item_id;
 		}
@@ -62,8 +69,6 @@ class EVotesBehavior extends CActiveRecordBehavior
 			$this->owner->addError($this->itemFieldName, $this->itemDeleteError);
 			return false;
 		}
-		
-		$user = Yii::app()->user;
 		
 		if (!$this->selfVoting && $item->user_id == $user->id) {
 			$this->owner->addError($this->itemFieldName, $this->selfVoteError);
