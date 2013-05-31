@@ -57,6 +57,7 @@ class PostVote extends ActiveRecord
 Пример добавления голоса:
 ```php
 $vote = PostVote::model();
+//голос (в данном случае $_POST['vote']) должен быть либо 1, либо -1
 if ($vote->addVote($_POST['vote'], $_POST['post_id'])) {
 	$votes = $vote->getVotes();
 }
