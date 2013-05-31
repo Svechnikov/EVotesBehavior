@@ -18,7 +18,7 @@ CREATE TABLE  `post_vote` (
 )
 ```
 
-И соответствующую под неё модель PostVote. Например,
+И соответствующую под неё модель PostVote с включением расширения в behaviors. Например,
 
 ```php
 class PostVote extends ActiveRecord
@@ -42,7 +42,7 @@ class PostVote extends ActiveRecord
 	{
 		return array(
 			'vote' => array(
-				'class' => 'EVotesBehavior',
+				'class' => 'ext.EVotesBehavior',
 				'itemModelName' => 'Post', //Название модели, за материалы которой можно голосовать
 				'itemFieldName' => 'post_id', //Внешний ключ в таблице голосов
 				'selfVoteError' => 'За свои записи голосовать нельзя!', //Сообщение об ошибке если пользователь голосует за свой материал
