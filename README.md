@@ -13,7 +13,7 @@ CREATE TABLE  `post_vote` (
  `post_id` INT( 10 ) UNSIGNED NOT NULL,
  `user_id` INT( 10 ) UNSIGNED NOT NULL,
  `vote` TINYINT( 4 ) NOT NULL ,
- `date` DATETIME NOT NULL ,
+ `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ,
  PRIMARY KEY (  `post_id` ,  `user_id` )
 )
 ```
