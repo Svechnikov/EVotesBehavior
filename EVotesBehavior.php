@@ -1,5 +1,5 @@
 <?php
-class ModelVotesBehaviorPublic extends CActiveRecordBehavior
+class EVotesBehavior extends CActiveRecordBehavior
 {
 	public $selfVoteError;
 	public $itemDeleteError;
