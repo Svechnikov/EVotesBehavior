@@ -8,7 +8,7 @@ EVotesBehavior
 
 2. Создайте таблицу для хранения голосов:
 
-
+```mysql
 CREATE TABLE  `post_vote` (
  `post_id` INT( 10 ) UNSIGNED NOT NULL,
  `user_id` INT( 10 ) UNSIGNED NOT NULL,
@@ -16,6 +16,7 @@ CREATE TABLE  `post_vote` (
  `date` DATETIME NOT NULL ,
  PRIMARY KEY (  `post_id` ,  `user_id` )
 )
+```
 
 И соответствующую под неё модель PostVote. Например,
 
