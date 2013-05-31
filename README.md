@@ -37,5 +37,19 @@ class PostVote extends ActiveRecord
 	{
 		return array('post_id', 'user_id');
 	}
+	
+	public function behaviors()
+	{
+		return array(
+			'vote' => array(
+				'class' => 'EVotesBehavior',
+				'itemModelName' => 'Post', //Название модели, за материалы которой можно голосовать
+				'itemFieldName' => 'post_id', //Внешний ключ в таблице голосов
+				'selfVoteError' => 'За свои записи голосовать нельзя!', //Сообщение об ошибке если пользователь голосует за свой материал
+				'itemDeleteError' => 'Запись, за которую вы хотите проголосовать, удалена!', //Если материал удалён
+				'selfVoting' => false, //Возможность голосовать за свои материалы
+			),
+		);
+	}
 }
 ```
