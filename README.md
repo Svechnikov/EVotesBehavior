@@ -8,6 +8,7 @@ EVotesBehavior
 
 2. Создайте таблицу для хранения голосов:
 
+
 CREATE TABLE  `post_vote` (
  `post_id` INT( 10 ) UNSIGNED NOT NULL,
  `user_id` INT( 10 ) UNSIGNED NOT NULL,
@@ -18,6 +19,7 @@ CREATE TABLE  `post_vote` (
 
 И соответствующую под неё модель PostVote. Например,
 
+```php
 class PostVote extends ActiveRecord
 {
   public function tableName()
@@ -35,3 +37,4 @@ class PostVote extends ActiveRecord
 		return array('post_id', 'user_id');
 	}
 }
+```
