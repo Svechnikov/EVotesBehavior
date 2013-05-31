@@ -56,16 +56,22 @@ class PostVote extends ActiveRecord
 ## Использование ##
 Пример добавления голоса:
 ```php
-	$vote = PostVote::model();
-	if ($vote->addVote($_POST['vote'], $_POST['post_id'])) {
-		$votes = $vote->getVotes();
-	}
-	else {
-		$errors = $vote->getErrors();
-	}
+$vote = PostVote::model();
+if ($vote->addVote($_POST['vote'], $_POST['post_id'])) {
+	$votes = $vote->getVotes();
+}
+else {
+	$errors = $vote->getErrors();
+}
 ```
 Пример получения голосов:
 ```php
-	$vote = PostVote::model();
-	$votes = $vote->getVotes($post_id);
+$vote = PostVote::model();
+$votes = $vote->getVotes($post_id);
 ```
+Метод getVotes возвращает массив со следующими элементами:
+positive - количество положительных оценок
+negative - количество отрицательных оценок
+rating - сумма положительных и отрицательных
+userVote - голос текущего пользователя (1 или -1). Если пользователь не оставлял оценок, то null.
+
