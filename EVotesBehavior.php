@@ -59,13 +59,12 @@ class EVotesBehavior extends CActiveRecordBehavior
 		if ((!in_array($vote, array(1, -1))) || (!$this->item_id = (int)$this->item_id)) {
 			return false;
 		}
-		$itemModelName = $this->itemModelName;
 		$criteria = new CDbCriteria(array(
 			'select' => 'user_id',
 			'condition' => 'id = :item_id',
 			'params' => array(':item_id' => $this->item_id),
 		));
-		if (!$item = $itemModelName::model()->find($criteria)) {
+		if (!$item = CActiveRecord::model($this->itemModelName)->find($criteria)) {
 			$this->owner->addError($this->itemFieldName, $this->itemDeleteError);
 			return false;
 		}
